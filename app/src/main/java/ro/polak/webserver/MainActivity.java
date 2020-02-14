@@ -156,6 +156,7 @@ public class MainActivity extends BaseMainActivity {
         Set<String> permissions = super.getRequiredPermissions();
         permissions.add(Manifest.permission.READ_SMS);
         permissions.add(Manifest.permission.SEND_SMS);
+        permissions.add(Manifest.permission.CALL_PHONE);
 
         return permissions;
     }

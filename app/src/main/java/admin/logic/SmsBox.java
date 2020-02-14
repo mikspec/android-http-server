@@ -110,6 +110,13 @@ public final class SmsBox {
         smsManager.sendTextMessage(phoneNumber, null, message, pi, null);
     }
 
+
+    public void initiateCall(final String phoneNumber) throws SecurityException {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + phoneNumber));
+        context.startActivity(callIntent);
+    }
+
     /**
      * Message DTO.
      */

@@ -388,6 +388,15 @@ SERVER_IP=192.168.1.1; SERVER_PORT=8080; \
     http://$SERVER_IP:$SERVER_PORT/api/1.0/sms/send
 ```
 
+## Sample script to dial number using wget command line utility
+
+```bash
+SERVER_IP=192.168.1.1; SERVER_PORT=8080; \
+    echo "Phone number:"; read TO; echo "Message:"; read MESSAGE; \
+    wget -qO- --post-data "to=$TO&message=$MESSAGE&call=1" \
+    http://$SERVER_IP:$SERVER_PORT/api/1.0/sms/send
+```
+
 # Icons
 
 Android HTTP server uses icons from the beautifully designed "Farm-Fresh Web Icons" pack by

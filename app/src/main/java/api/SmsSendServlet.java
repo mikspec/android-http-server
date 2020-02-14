@@ -27,6 +27,7 @@ public final class SmsSendServlet extends HttpServlet {
 
     public static final String TO_PARAMETER_NAME = "to";
     public static final String IS_TEST_PARAMETER_NAME = "test";
+    private static final String CALL_PARAMETER_NAME = "call";
     private static final String MESSAGE_PARAMETER_NAME = "message";
     private static final int MAX_SMS_LENGTH = 160;
     private static final int PHONE_NUMBER_LENGTH = 9;
@@ -44,6 +45,7 @@ public final class SmsSendServlet extends HttpServlet {
         String to = request.getPostParameter(TO_PARAMETER_NAME);
         String message = request.getPostParameter(MESSAGE_PARAMETER_NAME);
         String test = request.getPostParameter(IS_TEST_PARAMETER_NAME);
+        String call = request.getPostParameter(CALL_PARAMETER_NAME);
 
         if (to == null) {
             sendError(response, "Post parameter to is not set");
@@ -67,12 +69,18 @@ public final class SmsSendServlet extends HttpServlet {
 
         try {
             if (!"1".equals(test)) {
-                smsBox.sendMessage(to, message);
+                if (!"1".equals(call)) {
+                    smsBox.sendMessage(to, message);
+                } else {
+                    smsBox.initiateCall(to);
+                }
             }
 
             response.setContentType(MEDIA_TYPE_APPLICATION_JSON);
             response.getWriter().print(new APIResponse().toString());
         } catch (JSONException e) {
+            throw new ServletException(e);
+        } catch (SecurityException e) {
             throw new ServletException(e);
         }
     }
