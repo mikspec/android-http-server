@@ -40,8 +40,8 @@ public class DefaultServlet extends HttpServlet {
                 servletConfig.getServletContext().getAttribute("ResourceProviders");
         directoryIndex = (List<String>) servletConfig.getServletContext().getAttribute("DirectoryIndex");
 
-        Objects.requireNonNull(resourceProviders, "DefaultServlet is misconfigured.");
-        Objects.requireNonNull(directoryIndex, "DefaultServlet is misconfigured.");
+        //Objects.requireNonNull(resourceProviders, "DefaultServlet is misconfigured.");
+        //Objects.requireNonNull(directoryIndex, "DefaultServlet is misconfigured.");
 
         init();
     }

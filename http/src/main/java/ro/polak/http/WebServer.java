@@ -68,7 +68,11 @@ public final class WebServer extends Thread {
                 }
             }
         } finally {
-            IOUtilities.closeSilently(serverSocket);
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "Communication error", e);
+            }
             serviceContainer.getThreadPoolExecutor().shutdown();
         }
     }
@@ -150,7 +154,11 @@ public final class WebServer extends Thread {
      */
     public void stopServer() {
         listen = false;
-        IOUtilities.closeSilently(serverSocket);
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            LOGGER.info(e.getMessage());
+        }
         for (ResourceProvider resourceProvider : getServerConfig().getResourceProviders()) {
             resourceProvider.shutdown();
         }

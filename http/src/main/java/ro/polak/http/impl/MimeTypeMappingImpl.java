@@ -58,7 +58,7 @@ public class MimeTypeMappingImpl implements MimeTypeMapping {
     public static MimeTypeMapping createFromStream(final InputStream in) throws IOException {
         MimeTypeMappingImpl mimeTypeMapping = new MimeTypeMappingImpl();
 
-        InputStreamReader inputStreamReader = new InputStreamReader(in, StandardCharsets.UTF_8);
+        InputStreamReader inputStreamReader = new InputStreamReader(in);
 
         BufferedReader input = new BufferedReader(inputStreamReader);
         String line;

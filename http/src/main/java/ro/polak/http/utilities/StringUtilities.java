@@ -67,7 +67,7 @@ public final class StringUtilities {
      */
     public static String urlEncode(final String text) {
         try {
-            return encode(text, StandardCharsets.UTF_8.name());
+            return encode(text, "UTF-8");
         } catch (UnsupportedEncodingException e) { // $COVERAGE-IGNORE$
             throw new UnexpectedSituationException("Encoding is not supported.", e);  // $COVERAGE-IGNORE$
         }
@@ -81,7 +81,7 @@ public final class StringUtilities {
      */
     public static String urlDecode(final String text) {
         try {
-            return decode(text, StandardCharsets.UTF_8.name());
+            return decode(text, "UTF-8");
         } catch (UnsupportedEncodingException e) { // $COVERAGE-IGNORE$
             throw new UnexpectedSituationException("Encoding is not supported.", e);  // $COVERAGE-IGNORE$
         }

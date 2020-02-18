@@ -311,7 +311,7 @@ public class HttpServletResponseImpl implements HttpServletResponse {
         }
 
         byte[] head = (getStatus() + NEW_LINE + headersSerializer.serialize(headers))
-                .getBytes(StandardCharsets.UTF_8);
+                .getBytes();
         InputStream inputStream = new ByteArrayInputStream(head);
         serveStream(inputStream);
 

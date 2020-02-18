@@ -65,7 +65,7 @@ public class HttpServletRequestImpl implements HttpServletRequest {
 
     private ServletContextImpl servletContext;
     private Map<String, Object> attributes;
-    private String characterEncoding = StandardCharsets.UTF_8.name();
+    private String characterEncoding = "UTF-8";
 
     private InputStream in;
     private String localAddr;
